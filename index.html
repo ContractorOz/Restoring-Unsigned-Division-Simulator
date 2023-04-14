@@ -1,0 +1,34 @@
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<script>
+	function calculate(){
+		const m = document.getElementById("divisor")
+		const sol = document.getElementById("solution")
+		sol.innerHTML = "New"
+		m.style.background-color = "red"
+	}
+	function changeColor() {
+         document.getElementById("my-div").style.backgroundColor = "green";
+      }
+</script>
+
+<body>
+	<h2>Non? Restoring Division</h2>
+	<form class="form_division">
+		<label>Divisor (M)</label>
+		<input id="divisor"></input>
+		<label>Dividend (M)</label>
+		<input id="dividend" placeholder="Dividend..."></input>
+		<button onclick="changeColor()">Calculate</button>
+	</form>
+	<div id="my-div"></div>
+	
+	<hr>
+	
+	<h2>Solution</h2>
+	<p class="solution">ChangeMe</p>
+	
+</body>
