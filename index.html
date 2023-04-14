@@ -1,34 +1,69 @@
-<head>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
+<link href="style.css" rel="stylesheet" type="text/css"/>
 
 <script>
 	function calculate(){
-		const m = document.getElementById("divisor")
-		const sol = document.getElementById("solution")
-		sol.innerHTML = "New"
-		m.style.background-color = "red"
+		var m = document.getElementById("divisor")
+		var q = document.getElementById("dividend")
+		var sol = document.getElementById("solution")
+		var ans_q = document.getElementById("ans_q")
+		var ans_a = document.getElementById("ans_a")
+		
+		var valid=true;
+		if (m.value=="") //OR check if ndi lahat ng laman is 1 and 0 lang
+		{
+			m.style.backgroundColor = "red"
+			valid=false;
+		}
+		
+		if (q.value=="") //OR check if ndi lahat ng laman is 1 and 0 lang
+		{
+			q.style.backgroundColor = "red"
+			valid=false;
+		}
+		
+		if(valid){
+			sol.value = "Solution here\nNEWLINE"
+		}
 	}
-	function changeColor() {
-         document.getElementById("my-div").style.backgroundColor = "green";
-      }
+	
+	<!-- <h2>Restoring Division</h2> -->
+	<!-- <form onsubmit="return calculate()" class="form_division"> -->
+		<!-- <label>Divisor (M)</label> -->
+		<!-- <input id="divisor"></input> -->
+		<!-- <br> -->
+		<!-- <br> -->
+		<!-- <label>Dividend (M)</label> -->
+		<!-- <input id="dividend" placeholder="Dividend..."></input> -->
+		<!-- <button type="submit">Calculate</button> -->
+	<!-- </form> -->
+	
+	<!-- <hr> -->
+	
+	<!-- <h2>Solution</h2> -->
+	<!-- <p id="solution">ChangeMe</p> -->
+	
+	
 </script>
 
 <body>
-	<h2>Non? Restoring Division</h2>
-	<form class="form_division">
-		<label>Divisor (M)</label>
-		<input id="divisor"></input>
-		<label>Dividend (M)</label>
-		<input id="dividend" placeholder="Dividend..."></input>
-		<button onclick="changeColor()">Calculate</button>
-	</form>
-	<div id="my-div"></div>
+	<h2>Restoring Division</h2>
+	<label>Divisor (M)</label>
+	<input id="divisor"></input>
+	<br>
+	<br>
+	<label>Dividend (M)</label>
+	<input id="dividend"></input>
+	<button onclick="calculate()">Calculate</button>
+	
+	
+	<h4>Final Answer</h4>
+	<label>A: </label>
+	<input id="ans_a"></input>
+	<label>Q: </label>
+	<input id="ans_q"></input>
 	
 	<hr>
 	
 	<h2>Solution</h2>
-	<p class="solution">ChangeMe</p>
-	
+	<textarea id="solution"></textarea>
 </body>
