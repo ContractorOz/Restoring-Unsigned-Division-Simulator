@@ -1,11 +1,8 @@
 body{
 	width:50%;	
+	margin:auto;
 }
 
-div {
-  width: 100px;
-  height: 100px;
-  background-color: orange;
-  margin: 10px;
-  border-radius: 10px;
+h2{
+	padding-top: 32px;
 }

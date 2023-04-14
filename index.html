@@ -2,8 +2,8 @@
 
 <script>
 	function calculate(){
-		var m = document.getElementById("divisor")
 		var q = document.getElementById("dividend")
+		var m = document.getElementById("divisor")
 		var sol = document.getElementById("solution")
 		var ans_q = document.getElementById("ans_q")
 		var ans_a = document.getElementById("ans_a")
@@ -22,37 +22,58 @@
 		}
 		
 		if(valid){
-			sol.value = "Solution here\nNEWLINE"
+			var a_arr = []
+			//INITIALIZE
+			var i=0
+			var temp_a = "0"	//extra 0 for sign bit
+			var temp_q = q.value	
+			for(i=0; i<q.value.length; i++)
+			{
+				temp_a=temp_a+"0"
+			}
+
+
+			var step=1
+			createBox("a", temp_a, step)
+			createBox("q", temp_q, step)
+			createBr()
+			
+			
+			
+			//loop for q, //change temp_a and temp_q lang every step
+			//shift left AQ
+			//A=A-M
+			//if temp_a[temp_a.value.length-1],
+			// do stuff
+			//else
+			
+		}
+		
+		function createBox(what, value, step){
+			var box = document.createElement("input")
+			box.setAttribute("type", "text")
+			box.value = ("value", value)
+			box.id = what+"_box_"+step
+			box.setAttribute("readonly", "readonly")
+			document.body.appendChild(box)
+		}
+		
+		function createBr(){
+			var br = document.createElement("br")
+				document.body.appendChild(br)
 		}
 	}
-	
-	<!-- <h2>Restoring Division</h2> -->
-	<!-- <form onsubmit="return calculate()" class="form_division"> -->
-		<!-- <label>Divisor (M)</label> -->
-		<!-- <input id="divisor"></input> -->
-		<!-- <br> -->
-		<!-- <br> -->
-		<!-- <label>Dividend (M)</label> -->
-		<!-- <input id="dividend" placeholder="Dividend..."></input> -->
-		<!-- <button type="submit">Calculate</button> -->
-	<!-- </form> -->
-	
-	<!-- <hr> -->
-	
-	<!-- <h2>Solution</h2> -->
-	<!-- <p id="solution">ChangeMe</p> -->
-	
 	
 </script>
 
 <body>
 	<h2>Restoring Division</h2>
+	<label>Dividend (Q)</label>
+	<input id="dividend"></input>
+	<br>
+	<br>
 	<label>Divisor (M)</label>
 	<input id="divisor"></input>
-	<br>
-	<br>
-	<label>Dividend (M)</label>
-	<input id="dividend"></input>
 	<button onclick="calculate()">Calculate</button>
 	
 	
@@ -65,5 +86,5 @@
 	<hr>
 	
 	<h2>Solution</h2>
-	<textarea id="solution"></textarea>
+	<p id="solution"></p>
 </body>
