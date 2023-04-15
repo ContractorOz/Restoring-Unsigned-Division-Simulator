@@ -9,25 +9,7 @@ function isValid(elem){
 		return -1;
 	}
 	else{
-		//TODO: Check if input contains a char that is not 0 or 1
 		var isBinary = true
-		// while(isBinary)
-		// {
-			// if()
-		// }
-		
-		
-		//iterate over the whole array to check if a non-0 or 1 char exists
-		// for(i=0;i<elem.value.length;i++)
-		// {
-			// if(elem.value[i]=='1'||elem.value[i]=='0')
-			// {
-				// isBinary=true
-			// }
-			// else{
-				// isBinary=false
-			// }
-		// }
 		
 		var count = elem.value.length
 		var i = 0
@@ -41,6 +23,7 @@ function isValid(elem){
 			else{
 				isBinary=false
 			}
+			i++
 		}
 		
 		if (isBinary)
