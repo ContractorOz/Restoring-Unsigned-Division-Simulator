@@ -19,12 +19,27 @@ function calculate(){
 		valid = false
 	}
 	
+	if(isValid(q) != isValid(m))	//NOT same type
+	{
+		q.style.backgroundColor = "red"
+		m.style.backgroundColor = "red"
+		valid = false
+	}
 	if(valid){
+		// check if decimal or binary	//UNSIGNED eitherway
+		if (isValid(q)==1)
+		{
+			var temp_q = convert(q.value)
+		}
+		else{
+			var temp_q = q.value
+		}
+		
+		
 		var a_arr = []
 		var i=0
 		var temp_a = "0"	//extra 0 for sign bit
-		var temp_q = q.value	
-		for(i=0; i<q.value.length; i++)
+		for(i=0; i<temp_q.length; i++)
 		{
 			temp_a=temp_a+"0"
 		}
