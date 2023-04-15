@@ -12,11 +12,19 @@ function calculate(){
 		q.style.backgroundColor = "red"
 		valid = false
 	}
+	else{
+		q.style.backgroundColor = "#FFFFFF"
+		valid = true
+	}
 	
 	if(isValid(m)==-1)
 	{
 		m.style.backgroundColor = "red"
 		valid = false
+	}
+	else{
+		m.style.backgroundColor = "#FFFFFF"
+		valid = true
 	}
 	
 	if(isValid(q) != isValid(m))	//NOT same type
@@ -24,8 +32,12 @@ function calculate(){
 		q.style.backgroundColor = "red"
 		m.style.backgroundColor = "red"
 		valid = false
-	}
+	}	
+	
 	if(valid){
+		q.style.backgroundColor = "#FFFFFF"
+		m.style.backgroundColor = "#FFFFFF"
+
 		// check if decimal or binary	//UNSIGNED eitherway
 		if (isValid(q)==1)
 		{
