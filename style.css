@@ -6,3 +6,38 @@ body{
 h2{
 	padding-top: 32px;
 }
+
+.ans_container{
+	justify-content: left;
+	height: 22px;
+	width: auto;
+	display: flex;
+	flex-direction: row;
+}
+
+.ans_holder{
+	margin-left: 2%;
+	padding-left: 6%;
+	padding-right: 6%;
+	width: auto;
+	height: 20px;
+	border: 1px solid black;
+}
+
+#A_div{
+	margin-right: 3.5%;
+	width: auto;
+}
+#Q_div{
+	width: auto;
+}
+
+#ans_q{
+	margin: 0%;
+	padding: 0%;
+}
+
+#ans_a{
+	margin: 0%;
+	padding: 0%;
+}
