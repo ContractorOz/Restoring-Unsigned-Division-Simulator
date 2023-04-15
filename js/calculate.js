@@ -6,21 +6,21 @@ function calculate(){
 	var ans_a = document.getElementById("ans_a")
 	
 	var valid=true;
-	if (m.value=="") //OR check if ndi lahat ng laman is 1 and 0 lang
-	{
-		m.style.backgroundColor = "red"
-		valid=false;
-	}
 	
-	if (q.value=="") //OR check if ndi lahat ng laman is 1 and 0 lang
+	if(!isValid(q))
 	{
 		q.style.backgroundColor = "red"
-		valid=false;
+		valid = false
+	}
+	
+	if(!isValid(m))
+	{
+		m.style.backgroundColor = "red"
+		valid = false
 	}
 	
 	if(valid){
 		var a_arr = []
-		//INITIALIZE
 		var i=0
 		var temp_a = "0"	//extra 0 for sign bit
 		var temp_q = q.value	
@@ -28,21 +28,26 @@ function calculate(){
 		{
 			temp_a=temp_a+"0"
 		}
+		var neg_m = negate(m)
 
-
-		var step=1
+		//INITIALIZE STEP
+		var step=0
 		createBox("a", temp_a, step)
 		createBox("q", temp_q, step)
 		createBr()
 		
-		
-		
 		//loop for q, //change temp_a and temp_q lang every step
-		//shift left AQ
+		//temp_a = shl(a)
+		//temp_q = shl(q)
 		//A=A-M
 		//if temp_a[temp_a.value.length-1],
 		// do stuff
 		//else
+		//step++
+		//createBox("a", temp_a, step)
+		//createBox("q", temp_q, step)
+		//createBr()
+		
 		
 	}
 }
