@@ -30,6 +30,7 @@ function isValid(elem){
 		// }
 		
 		var count = elem.value.length
+		var i = 0
 		while(count>0&&isBinary)
 		{
 			if(elem.value[i]=='1'||elem.value[i]=='0')

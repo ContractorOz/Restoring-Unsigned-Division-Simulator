@@ -34,29 +34,71 @@ function calculate(){
 		else{
 			var temp_q = q.value
 		}
+
+		if (isValid(m)==1)
+		{
+			var temp_m = convert(m.value)
+		}
+		else{
+			var temp_m = m.value
+		}
 		
 		
 		var a_arr = []
 		var i=0
-		var temp_a = "0"	//extra 0 for sign bit
+		var temp_a = "0"	//extra 0 for sign bitvar temp_q = q.value
+		var temp_q = q.value.toString()
+		var count = temp_q.length
 		for(i=0; i<temp_q.length; i++)
 		{
 			temp_a=temp_a+"0"
 		}
-		var neg_m = negate(m)
 
+		//INITIALIZE STEP
+		var neg_m = negate(m)
 		var AQ = []
+		var step=0
+
 		AQ.push(temp_a)
 		AQ.push(temp_q)
-		//INITIALIZE STEP
 
-		AQ = shift_left(AQ)
-		sol.innerHTML = AQ
+
+		for(i=0; i<count; i++){
+			var new_a
+			AQ.push(temp_a)
+			AQ.push(temp_q)
+			
+			AQ = shift_left(AQ)
+
+			//A = A-M
+			new_a = parseInt(AQ[0], 2) + parseInt(m.value, 2)
+			new_a = new_a.toString(2)
+			
+			if (new_a.length > count+1){
+				new_a = new_a.substring(1,count+2)
+			}
+			else if (new_a.length < count+1){
+				console.log("here2")
+				new_a = new_a.padStart(count+1, "0")
+			}
+
+			//If A MSB is 1, restore A and set Q LSB to 0
+			//Else, keep new A and set Q LSB to 1
+			if(new_a.charAt(0) == "1"){
+				temp_q = AQ[1]+0
+			} else {
+				temp_a = new_a
+				temp_q = AQ[1]+1
+			}
+
+			//Show Solution
+			createBox("a", AQ[0], step)
+			createBox("q", AQ[1], step)
+			createBr()
+		}
 		
-		var step=0
-		createBox("a", AQ[0], step)
-		createBox("q", AQ[1], step)
-		createBr()
+
+		
 		
 		//loop for q, //change temp_a and temp_q lang every step
 		//temp_a = shl(a)
