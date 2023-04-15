@@ -30,10 +30,17 @@ function calculate(){
 		}
 		var neg_m = negate(m)
 
+		var AQ = []
+		AQ.push(temp_a)
+		AQ.push(temp_q)
 		//INITIALIZE STEP
+
+		AQ = shift_left(AQ)
+		sol.innerHTML = AQ
+		
 		var step=0
-		createBox("a", temp_a, step)
-		createBox("q", temp_q, step)
+		createBox("a", AQ[0], step)
+		createBox("q", AQ[1], step)
 		createBr()
 		
 		//loop for q, //change temp_a and temp_q lang every step
