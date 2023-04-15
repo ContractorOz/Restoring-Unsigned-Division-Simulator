@@ -35,3 +35,29 @@ function isValid(elem){
 	}
 	
 }
+
+function validator(q,m){
+	var valid=true;
+	var temp_q=-1
+	
+	if(isValid(q)==-1)
+	{
+		q.style.backgroundColor = "red"
+		valid = false
+	}
+	else{
+		q.style.backgroundColor = "#FFFFFF"
+		valid = true
+	}
+	
+	if(isValid(m)==-1)
+	{
+		m.style.backgroundColor = "red"
+		valid = false
+	}
+	else{
+		m.style.backgroundColor = "#FFFFFF"
+		valid = true
+	}
+	return valid;
+}
