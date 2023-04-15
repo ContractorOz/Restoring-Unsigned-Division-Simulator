@@ -7,23 +7,39 @@
 
 <body>
 	<h2>Restoring Division</h2>
-	<label>Dividend (Q)</label>
-	<input id="dividend"></input>
-	<br>
-	<br>
-	<label>Divisor (M)</label>
-	<input id="divisor"></input>
-	<button onclick="calculate()">Calculate</button>
-	
-	
+	<!--Div for user inputs-->
+	<div class="input_container">
+		<label>Dividend (Q)</label>
+		<input id="dividend"></input>
+		<br>
+		<br>
+		<label>Divisor (M)</label>
+		<input id="divisor"></input>
+		<button onclick="calculate()">Calculate</button>
+	</div>
+
+	<!--Div for answer output-->
 	<h4>Final Answer</h4>
-	<label>A: </label>
-	<input id="ans_a"></input>
-	<label>Q: </label>
-	<input id="ans_q"></input>
-	
+	<div class="ans_container">
+		<div class="ans_container" id="A_div">
+			<label>A: </label>
+			<div class="ans_holder">
+				<p id="ans_a">Placeholder</p>
+			</div>
+		</div>
+		<div class="ans_container" id="Q_div">
+			<label>Q: </label>
+			<div class="ans_holder">
+				<p id="ans_q">Placeholder</p>
+			</div>
+		</div>
+	</div>
+
 	<hr>
-	
-	<h2>Solution</h2>
-	<p id="solution"></p>
+
+	<!--Div for solution-->
+	<div class="sol_container">
+		<h2>Solution</h2>
+			<p id="solution"></p>
+	</div>
 </body>
