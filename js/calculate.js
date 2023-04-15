@@ -7,13 +7,13 @@ function calculate(){
 	
 	var valid=true;
 	
-	if(!isValid(q))
+	if(isValid(q)==-1)
 	{
 		q.style.backgroundColor = "red"
 		valid = false
 	}
 	
-	if(!isValid(m))
+	if(isValid(m)==-1)
 	{
 		m.style.backgroundColor = "red"
 		valid = false
