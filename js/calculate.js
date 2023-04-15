@@ -34,14 +34,7 @@ function calculate(){
 		AQ.push(temp_a)
 		AQ.push(temp_q)
 		//INITIALIZE STEP
-		// sol.innerHTML = //shift_left(temp_a, temp_q)//test
-		
-		//test onli
-		//var QM = []
-		//QM.push(q.value)
-		//QM.push(m.value)
-		
-		//sol.innerHTML = shift_left(QM)//test
+
 		AQ = shift_left(AQ)
 		sol.innerHTML = AQ
 		
