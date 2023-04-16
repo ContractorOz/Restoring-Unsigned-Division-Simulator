@@ -6,6 +6,7 @@ function calculate(){
 	var show = document.querySelector('#show_sol')
 	var q = document.getElementById("dividend")
 	var m = document.getElementById("divisor")
+	var sol = document.getElementById("solution")
 	var ans_q = document.getElementById("ans_q")
 	var ans_a = document.getElementById("ans_a")
 	var valid = validator(q,m)
@@ -33,8 +34,11 @@ function calculate(){
 		}
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
+		console.log(temp_m )
+		console.log(temp_q )
 	}
-	else if(valid==0)
+	//else if just one of them is a type 1, then both are decimals
+	else// if(isValid(q)==0||isValid(m)==0)
 	{
 		//then treat both as decimals na
 		if(isValid(q)==0&&isValid(m)==0){
@@ -93,6 +97,7 @@ function calculate(){
 	}
 
 	for(i=0; i<count; i++){
+
 		step++
 		var new_a
 		
