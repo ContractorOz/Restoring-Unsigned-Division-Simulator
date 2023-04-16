@@ -1,10 +1,33 @@
 function calculate(){
-	document.getElementById("steps").innerHTML = ""
+	// // document.getElementById("steps").innerHTML = ""
+	var sol_container = document.getElementById("sol_container")
+	sol_container.removeChild(document.getElementById("steps"))
+
+	var new_step = document.createElement("div")
+	new_step.id = "steps"
+	sol_container.appendChild(new_step)
+	// document.body.appendChild(box)
+	
+	
+	// var prev = document.getElementsByClassName("step")
+	// //delete all previous boxes if any
+	// var i=0
+	// console.log(document.getElementsByClassName("step"))
+	// if (prev)
+	// {
+			
+		// while(prev.length>0){	
+			// prev.removeChild(i)
+			// i++
+		// }
+	// }
+	
+	var sol = document.getElementById("solution")
+
 	var decimal = document.querySelector('#check_int')
 	var show = document.querySelector('#show_sol')
 	var q = document.getElementById("dividend")
 	var m = document.getElementById("divisor")
-	var sol = document.getElementById("solution")
 	var ans_q = document.getElementById("ans_q")
 	var ans_a = document.getElementById("ans_a")
 	var cb_showSol = document.getElementById("show_sol").checked
@@ -129,8 +152,6 @@ function calculate(){
 		//step++
 		//createBox("a", temp_a, step)
 		//createBox("q", temp_q, step)
-		//createBr()
-		
-		
+		//createBr()		
 	}
 }
