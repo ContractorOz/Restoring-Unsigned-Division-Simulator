@@ -7,47 +7,30 @@ function calculate(){
 	var sol = document.getElementById("solution")
 	var ans_q = document.getElementById("ans_q")
 	var ans_a = document.getElementById("ans_a")
-	
+	var cb_showSol = document.getElementById("show_sol").checked
+
+
 	var valid = validator(q,m)
 	var temp_q=-1
 	var temp_m=0
 
-
-	if (valid == -1){
-		console.log("Error: No inputs!")
-		return
-	}
-
-	//check if 10, 100, 1 -> should be checked first if decimal din kabila
-	if(decimal.checked)
+	if (valid==0) //check if inputs are decimal, invalid, or binary
 	{
-	// if both are binary
-		temp_q = convert(q.value)
-		temp_m = convert(m.value)
+		var temp_q = convert(q.value)
+		var temp_m = convert(m.value)
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
-		console.log(temp_m )
-		console.log(temp_q )
 	}
-	//else if just one of them is a type 1, then both are decimals
-	else// if(isValid(q)==0||isValid(m)==0)
+	else if(valid==1)
 	{
-		//then treat both as decimals na
-		
-		if(isValid(q)==0&&isValid(m)==0){
-			temp_q = q.value
-			temp_m = m.value
-			temp_m = temp_m.padStart(temp_q.length, "0")
-			temp_q = temp_q.padStart(temp_m.length, "0")
-		}else{
-			console.log("Inputs are not binary!")
-			return
-		}
+		var temp_q = q.value
+		var temp_m = m.value
+		temp_m = temp_m.padStart(temp_q.length, "0")
+		temp_q = temp_q.padStart(temp_m.length, "0")
 	}
-
-	console.log("Q = " + temp_q + " M = " + temp_m + " negate M = " + negate(temp_m))
 	
-	if(valid ){
+	
+	if(valid != -1){
 		q.style.backgroundColor = "#FFFFFF"
 		m.style.backgroundColor = "#FFFFFF"		
 		
@@ -67,30 +50,35 @@ function calculate(){
 		AQ.push(temp_a)
 		AQ.push(temp_q)
 		
-		//INITIALIZE STEP
-		if (show.checked){
-			createBox("a", AQ[0], step)
-			createBox("q", AQ[1], step)
+		if(cb_showSol)
+		{
+			//INITIALIZE STEP		
+			createLabel(step)
+			createBr()
+			createBox("a", AQ[0])
+			createBox("q", AQ[1])
 			createBr()
 			createBr()
-		}
-		
-		if (show.checked){
-			sol.innerHTML = "-M: "+negate(temp_m)
 		}
 
+		sol.innerHTML = "-M: "+negate(temp_m)//negate(temp_m doesnt show leftmost digit somehow
+
 		for(i=0; i<count; i++){
+			step++
 			var new_a
 			
 			AQ = shift_left(AQ)
 
-			//Print after shift
-			if (show.checked){
+			if(cb_showSol)
+			{
+				//Print after shift
+				createLabel(step)
+				createBr()
 				createBox("a", AQ[0], step)
 				createBox("q", AQ[1], step)
 				createBr()
 			}
-			
+
 			//A = A-M
 			new_a = parseInt(AQ[0], 2) + parseInt(negate(temp_m), 2)
 			new_a = new_a.toString(2)
@@ -118,13 +106,14 @@ function calculate(){
 				AQ.push(temp_q)
 			}
 			
-			//Show Solution
-			if (show.checked){
+			if(cb_showSol)
+			{
 				createBox("a", AQ[0], step)
 				createBox("q", AQ[1], step)
 				createBr()
 				createBr()
 			}
+			
 		}
 		
 		ans_a.innerHTML = AQ[0]

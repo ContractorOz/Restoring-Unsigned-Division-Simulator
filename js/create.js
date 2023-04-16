@@ -14,5 +14,16 @@ function createBox(what, value, step){
 //creates a line break
 function createBr(){
 	var br = document.createElement("br")
-		document.getElementById("steps").appendChild(br)
+		document.body.appendChild(br)
+}
+
+function createLabel(step){
+	var label = document.createElement("label")
+	if (step==0){
+		label.innerHTML = "Initialization"
+	}
+	else{
+		label.innerHTML = "Step "+step
+	}
+	document.body.appendChild(label)
 }
