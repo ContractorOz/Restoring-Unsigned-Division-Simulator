@@ -1,63 +1,138 @@
-// returns 0 if valid input and binary
-// returns 1 if valid input and decimal
+// returns 0 if binary input
+// returns 1 if decimal input
+// returns 2 if negative input (- first element)
 // returns -1 if invalid (characters are not numbers or blank)
-// elem - input element from the html
 function isValid(elem){
-	
 	if (elem.value=="")
 	{
 		return -1;
 	}
 	else{
 		var isBinary = true
+		var isDecimal = false
 		
 		var count = elem.value.length
 		var i = 0
-		while(count>0&&isBinary)
+		if(elem.value[0]=='-')
 		{
-			if(elem.value[i]=='1'||elem.value[i]=='0')
+			console.log("Value "+elem.value+" is SIGNED")
+			return 2;
+		}
+		else{				
+			while(count>0&&isBinary&&!isDecimal)
 			{
-				// isBinary=true
-				count--
+				
+				if(elem.value[i]=='1'||elem.value[i]=='0')
+				{
+					isBinary=true
+					isDecimal=false
+					count--
+				}
+				else if(elem.value[i]>='0'&&elem.value[i]<='9'){
+					isBinary=false
+					isDecimal=true
+					count--
+				}
+				else{
+					isBinary=false
+					isDecimal=false
+					//is a non number character
+				}
+				i++
 			}
-			else{
-				isBinary=false
-			}
-			i++
 		}
 		
-		if (isBinary)
+		// console.log(isBinary)
+		// console.log(isDecimal)
+		if (isBinary && !isDecimal)
 		{
+			console.log("Value "+elem.value+" is BINARY")
 			return 0;
-		} else {
+		} else if (!isBinary && isDecimal) {
+			console.log("Value "+elem.value+" is DECIMAL")
 			return 1;
 		}
+		else{
+			console.log("Value "+elem.value+" has NON-NUMBER CHARACTERS")
+			return -1;
+		}
 	}
-	
 }
 
+// returns -1 if invalid input
+// returns 0 if binary input
+// returns 1 if decimal input
 function validator(q,m){
-	var valid=true;
-	var temp_q=-1
+	var valid=1;
+	var sol = document.getElementById("errormsg")
+	var cb_isInt = document.getElementById("check_int").checked
+
 	
 	if(isValid(q)==-1)
 	{
 		q.style.backgroundColor = "red"
-		valid = false
+
+		valid = -1
 	}
 	else{
 		q.style.backgroundColor = "#FFFFFF"
-		valid = true
 	}
 	
 	if(isValid(m)==-1)
 	{
 		m.style.backgroundColor = "red"
-		valid = false
+		valid = -1
 	}
 	else{
 		m.style.backgroundColor = "#FFFFFF"
-		valid = true
 	}
-	return valid;
+	
+	if (valid == -1)
+	{
+		sol.innerHTML = "Invalid input. Empty or Non-numerical inputs."
+		return -1
+	}
+	else{	//neither inputs are blank, check for validity now
+ 
+ 		console.log("Operating in Base-10 DECIMAL?: "+cb_isInt)
+
+		if(isValid(q)==0 && isValid(m)==0)	//if both binary
+		{
+		// if both are binary
+			// temp_q = q.value
+			// temp_m = m.value
+			if (cb_isInt) //look at the digits as if they are decimal ('10' is ten, not two)
+			{
+				// sol.innerHTML = "Invalid input. Base mismatch. Please untick the checkbox if you intended to perform BINARY division."
+				return 1
+			}
+			else{
+				return 0
+			}
+		}
+		else if(isValid(q)==2||isValid(m)==2)	//else if just one is a negative, ERROR
+		{
+			sol.innerHTML = "Invalid input. Please input UNSIGNED."//negate(temp_m doesnt show leftmost digit somehow
+			return -1
+		}
+		else if(isValid(q)==-1 || isValid(m)==-1)	//else if just one is a nonnumber, ERROR
+		{
+			sol.innerHTML = "Invalid input. Please enter NUMBERS only."
+			return -1
+		}
+		else //if(isValid(q)== 1 || isValid(m)==1) //else if just one of them is a decimal, then both are decimals
+		{
+			//then treat both as decimals na
+			// temp_q = convert(q.value)
+			// temp_m = convert(m.value)
+			if (cb_isInt) //expected to be int
+			{
+				return 1			
+			}
+			else{
+				sol.innerHTML = "Invalid input. Base mismatch. Please untick the checkbox if you intended to perform DECIMAL division."
+				return -1
+			}
+		}
+	}
 }

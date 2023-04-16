@@ -14,9 +14,7 @@ function calculate(){
 	var temp_m=0
 
 
-	if (!valid){
-		document.getElementById("errormsg").innerHTML = "Please add inputs!"
-		console.log("Here")
+	if (valid == -1){
 		return
 	}
 
