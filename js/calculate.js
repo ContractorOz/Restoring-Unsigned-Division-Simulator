@@ -29,6 +29,9 @@ function calculate(){
 		if (temp_q.charAt(0) == "1"){
 			temp_q = "0" + temp_q
 		}
+		if (temp_m.charAt(0) == "1"){
+			temp_m = "0" + temp_m
+		}
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
 		console.log(temp_m )
@@ -44,6 +47,9 @@ function calculate(){
 			temp_m = m.value
 			if (temp_q.charAt(0) == "1"){
 				temp_q = "0" + temp_q
+			}
+			if (temp_m.charAt(0) == "1"){
+				temp_m = "0" + temp_m
 			}
 			temp_m = temp_m.padStart(temp_q.length, "0")
 			temp_q = temp_q.padStart(temp_m.length, "0")
