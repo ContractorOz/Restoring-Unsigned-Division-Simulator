@@ -16,7 +16,6 @@ function calculate(){
 
 	if (valid == -1){
 		console.log("CALCULATE NOT VALID")
-		console.log("CALCULATE NOT VALID")
 		return
 	}
 
@@ -42,7 +41,6 @@ function calculate(){
 	else// if(isValid(q)==0||isValid(m)==0)
 	{
 		//then treat both as decimals na
-		
 		if(isValid(q)==0&&isValid(m)==0){
 			console.log("CALCULATE BOTH BIN")
 			temp_q = q.value
