@@ -1,4 +1,5 @@
 function calculate(){
+	var binary = document.querySelector('#check_int')
 	var q = document.getElementById("dividend")
 	var m = document.getElementById("divisor")
 	var sol = document.getElementById("solution")
@@ -8,12 +9,25 @@ function calculate(){
 	var valid = validator(q,m)
 	var temp_q=-1
 	var temp_m=0
+
+	console.log(binary.checked)
+
+	if (!valid){
+		console.log("Error: No inputs!")
+		return
+	}
+
 	//check if 10, 100, 1 -> should be checked first if decimal din kabila
-	if(isValid(q)==0&&isValid(m)==0)
+	if(binary.checked)
 	{
 	// if both are binary
-		temp_q = q.value
-		temp_m = m.value
+		if(isValid(q)==0&&isValid(m)==0){
+			temp_q = q.value
+			temp_m = m.value
+		}else{
+			console.log("Inputs are not binary!")
+			return
+		}
 	}
 	//else if just one of them is a type 1, then both are decimals
 	else// if(isValid(q)==0||isValid(m)==0)
