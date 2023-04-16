@@ -111,6 +111,7 @@ function validator(q,m){
 		}
 		else //if(isValid(q)== 1 || isValid(m)==1) //else if just one of them is a decimal, then both are decimals
 		{
+			if(cb_isInt)
 			{
 				return 1			
 			}
