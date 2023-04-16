@@ -1,5 +1,6 @@
 function calculate(){
-	var binary = document.querySelector('#check_int')
+	document.getElementById("steps").innerHTML = ""
+	var decimal = document.querySelector('#check_int')
 	var q = document.getElementById("dividend")
 	var m = document.getElementById("divisor")
 	var sol = document.getElementById("solution")
@@ -11,34 +12,41 @@ function calculate(){
 	var temp_m=0
 
 
-	if (!valid){
+	if (valid == -1){
 		console.log("Error: No inputs!")
 		return
 	}
 
 	//check if 10, 100, 1 -> should be checked first if decimal din kabila
-	if(binary.checked)
+	if(decimal.checked)
 	{
 	// if both are binary
-		if(isValid(q)==0&&isValid(m)==0){
-			temp_q = q.value
-			temp_m = m.value
-		}else{
-			console.log("Inputs are not binary!")
-			return
-		}
+		temp_q = convert(q.value)
+		temp_m = convert(m.value)
+		temp_m = temp_m.padStart(temp_q.length, "0")
+		temp_q = temp_q.padStart(temp_m.length, "0")
+		console.log(temp_m )
+		console.log(temp_q )
 	}
 	//else if just one of them is a type 1, then both are decimals
 	else// if(isValid(q)==0||isValid(m)==0)
 	{
 		//then treat both as decimals na
-		temp_q = convert(q.value)
-		temp_m = convert(m.value)
+		
+		if(isValid(q)==0&&isValid(m)==0){
+			temp_q = q.value
+			temp_m = m.value
+			temp_m = temp_m.padStart(temp_q.length, "0")
+			temp_q = temp_q.padStart(temp_m.length, "0")
+		}else{
+			console.log("Inputs are not binary!")
+			return
+		}
 	}
 
 	console.log("Q = " + temp_q + " M = " + temp_m + " negate M = " + negate(temp_m))
 	
-	if(valid){
+	if(valid ){
 		q.style.backgroundColor = "#FFFFFF"
 		m.style.backgroundColor = "#FFFFFF"		
 		

@@ -8,11 +8,11 @@ function createBox(what, value, step){
 	box.value = ("value", value)
 	box.id = what+"_box_"+step
 	box.setAttribute("readonly", "readonly")
-	document.body.appendChild(box)
+	document.getElementById("steps").appendChild(box)
 }
 
 //creates a line break
 function createBr(){
 	var br = document.createElement("br")
-		document.body.appendChild(br)
+		document.getElementById("steps").appendChild(br)
 }
