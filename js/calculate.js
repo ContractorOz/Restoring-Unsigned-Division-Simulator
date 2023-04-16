@@ -13,6 +13,7 @@ function calculate(){
 	{
 	// if both are binary
 		temp_q = q.value
+		temp_m = m.value
 	}
 	//else if just one of them is a type 1, then both are decimals
 	else// if(isValid(q)==0||isValid(m)==0)
@@ -20,12 +21,7 @@ function calculate(){
 		//then treat both as decimals na
 		temp_q = convert(q.value)
 		temp_m = convert(m.value)
-	}
-	
-	
-	//TODO: May prob NaN yung A if both decimal inputs
-	
-	
+	}	
 	
 	if(valid){
 		q.style.backgroundColor = "#FFFFFF"
@@ -33,31 +29,37 @@ function calculate(){
 		
 		var a_arr = []
 		var i=0
-		var temp_a = "0"	//extra 0 for sign bitvar temp_q = q.value
-		//var temp_q = q.value.toString() //not needed
+		var temp_a = "0"	//extra 0 for sign bit
 		var count = temp_q.length
 		for(i=0; i<temp_q.length; i++)
 		{
 			temp_a=temp_a+"0"
 		}
 
-		//INITIALIZE STEP
 		var neg_m = negate(m)
 		var AQ = []
 		var step=0
-
-		// AQ.push(temp_a)
-		// AQ.push(temp_q)
-		// AQ = shift_left(AQ)
-
+		
 		AQ.push(temp_a)
 		AQ.push(temp_q)
 		
+		//INITIALIZE STEP
+		createBox("a", AQ[0], step)
+		createBox("q", AQ[1], step)
+		createBr()
+		createBr()
+		
+		sol.innerHTML = "-M: "+negate(temp_m)
 		for(i=0; i<count; i++){
 			var new_a
 			
 			AQ = shift_left(AQ)
 
+			//Print after shift
+			createBox("a", AQ[0], step)
+			createBox("q", AQ[1], step)
+			createBr()
+			
 			//A = A-M
 			new_a = parseInt(AQ[0], 2) + parseInt(temp_m, 2)
 			new_a = new_a.toString(2)
@@ -88,6 +90,7 @@ function calculate(){
 			//Show Solution
 			createBox("a", AQ[0], step)
 			createBox("q", AQ[1], step)
+			createBr()
 			createBr()
 		}
 		
