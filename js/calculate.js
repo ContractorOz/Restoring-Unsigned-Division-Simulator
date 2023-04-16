@@ -1,29 +1,35 @@
 function calculate(){
+	//CODE CLEANUP
 	document.getElementById("steps").innerHTML = ""
 	document.getElementById("solution").innerHTML = ""
 	document.getElementById("errormsg").innerHTML = ""
-	var decimal = document.querySelector('#check_int')
-	var show = document.querySelector('#show_sol')
-	var q = document.getElementById("dividend")
-	var m = document.getElementById("divisor")
-	var sol = document.getElementById("solution")
-	var ans_q = document.getElementById("ans_q")
-	var ans_a = document.getElementById("ans_a")
-	var valid = validator(q,m)
+	
+	
+	//VARIABLES
+	const decimal = document.querySelector('#check_int')
+	const show = document.querySelector('#show_sol')
+	const q = document.getElementById("dividend")
+	const m = document.getElementById("divisor")
+	const sol = document.getElementById("solution")
+	const ans_q = document.getElementById("ans_q")
+	const ans_a = document.getElementById("ans_a")
+	const cb_output = document.getElementById("cb_output").checked
 	var temp_q=-1
 	var temp_m=0
-
-
+	// const fs = require('fs')
+	// const path = "output.txt"
+	var output=""
+	
+	// CHECK FOR BASE TO DIVIDE (BASE 2 OR BASE 10 ONLY)
+	var valid = validator(q,m)
+			// -1: invalid input (unsigned, NaN)
+			//  0: binary division
+			//	1: decimal division
 	if (valid == -1){
-		console.log("CALCULATE NOT VALID")
-		return
+		return false	//end if invalid
 	}
-
-	//check if 10, 100, 1 -> should be checked first if decimal din kabila
-	if(decimal.checked)
+	else if(valid == 1)	//validator returns 1: decimal inputs
 	{
-	// if both are binary
-		console.log("CALCULATE BOTH DEC BIN")
 		temp_q = convert(q.value)
 		temp_m = convert(m.value)
 		if (temp_q.charAt(0) == "1"){
@@ -34,51 +40,34 @@ function calculate(){
 		}
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
-		console.log(temp_m )
-		console.log(temp_q )
 	}
-	//else if just one of them is a type 1, then both are decimals
-	else// if(isValid(q)==0||isValid(m)==0)
+	else 				// validator returns 0: binary inputs
 	{
-		//then treat both as decimals na
-		if(isValid(q)==0&&isValid(m)==0){
-			console.log("CALCULATE BOTH BIN")
-			temp_q = q.value
-			temp_m = m.value
-			if (temp_q.charAt(0) == "1"){
-				temp_q = "0" + temp_q
-			}
-			if (temp_m.charAt(0) == "1"){
-				temp_m = "0" + temp_m
-			}
-			temp_m = temp_m.padStart(temp_q.length, "0")
-			temp_q = temp_q.padStart(temp_m.length, "0")
-			console.log(temp_m )
-			console.log(temp_q )
-			console.log("CALCULATE BOOTH BIN END")
-		}else{
-			console.log("CALCULATE NOT VALID BIN")
-			return
+		temp_q = q.value
+		temp_m = m.value
+		if (temp_q.charAt(0) == "1"){
+			temp_q = "0" + temp_q
 		}
+		if (temp_m.charAt(0) == "1"){
+			temp_m = "0" + temp_m
+		}
+		temp_m = temp_m.padStart(temp_q.length, "0")
+		temp_q = temp_q.padStart(temp_m.length, "0")
 	}
-
-	console.log("Q = " + temp_q + " M = " + temp_m + " negate M = " + negate(temp_m))
-	q.style.backgroundColor = "#FFFFFF"
-	m.style.backgroundColor = "#FFFFFF"		
 	
+	
+	
+	//FROM HERE ON, ASSUME VALID	
 	var a_arr = []
-	var i=0
 	var temp_a = "0"	//extra 0 for sign bit
 	var count = temp_q.length
 	for(i=0; i<temp_q.length; i++)
 	{
 		temp_a=temp_a+"0"
 	}
-
-	var neg_m = negate(m)
+	
 	var AQ = []
 	var step=0
-	
 	AQ.push(temp_a)
 	AQ.push(temp_q)
 	
@@ -90,11 +79,10 @@ function calculate(){
 		createBox("q", AQ[1])
 		createBr()
 		createBr()
+		output = "INITIALIZE:\nM: "+temp_m+" -M:"+negate(temp_m)+"\nA: "+AQ[0]+"Q: "+AQ[1]+"\n\n"
 	}
 	
-	if (show.checked){
-		sol.innerHTML = "-M: "+negate(temp_m)
-	}
+	if (show.checked){ sol.innerHTML = "-M: "+negate(temp_m) }
 
 	for(i=0; i<count; i++){
 
@@ -110,8 +98,9 @@ function calculate(){
 			createBox("a", AQ[0])
 			createBox("q", AQ[1])
 			createBr()
+			output = output+"Step "+step+"\nA: "+AQ[0]+"Q: "+AQ[1]+"\n"
 		}
-		
+
 		//A = A-M
 		new_a = parseInt(AQ[0], 2) + parseInt(negate(temp_m), 2)
 		new_a = new_a.toString(2)
@@ -120,7 +109,6 @@ function calculate(){
 			new_a = new_a.substring(1,count+2)
 		}
 		else if (new_a.length < count+1){
-			console.log("here2")
 			new_a = new_a.padStart(count+1, "0")
 		}
 
@@ -138,16 +126,30 @@ function calculate(){
 			AQ.push(temp_a)
 			AQ.push(temp_q)
 		}
-		
+
 		//Show Solution
 		if (show.checked){
 			createBox("a", AQ[0], step)
 			createBox("q", AQ[1], step)
 			createBr()
 			createBr()
+			output = output+"\nA: "+AQ[0]+"Q: "+AQ[1]+"\n\n"
 		}
 	}
 	
+	output = output+"\nFINAL ANSWER:\nQuotient:"+AQ[1]+"\nRemainder "+AQ[0]
 	ans_a.innerHTML = AQ[0]
 	ans_q.innerHTML = AQ[1]
+	
+
+	if (cb_output){
+		var out = document.createElement('a');	//<a href
+		out.setAttribute("href", "data:text/plain;charset=utf-8,"+encodeURIComponent(output))
+		out.setAttribute("download", "output.txt")
+		out.style.display = "none"	//hidden
+		document.body.appendChild(out)
+		out.click()
+		// document.body.removeChild(out);
+		console.log(output)
+	}
 }

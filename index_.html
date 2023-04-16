@@ -20,7 +20,6 @@
 		<br><br>
 		<input type="checkbox" id="check_int">Input is base-10.</input>
 		<input type="checkbox" id="show_sol">Show Solution</input>
-		<input type="checkbox" id="cb_output">Output to file "output.txt"</input>
 		<br><br>
 		<button id="btn-calculate" onclick="calculate()">Calculate</button>
 	</div>
@@ -28,16 +27,16 @@
 	<!--Div for answer output-->
 	<h4>Final Answer</h4>
 	<div class="ans_container">
-		<div class="ans" id="Q_div">
-			<label>Quotient(Q):</label>
-			<div class="ans_holder">
-				<p id="ans_q">000000</p>
-			</div>
-		</div>
-		<div class="ans" id="A_div">
-			<label>Remainder(A): </label>
+		<div class="ans_container" id="A_div">
+			<label>A: </label>
 			<div class="ans_holder">
 				<p id="ans_a">000000</p>
+			</div>
+		</div>
+		<div class="ans_container" id="Q_div">
+			<label>Q: </label>
+			<div class="ans_holder">
+				<p id="ans_q">000000</p>
 			</div>
 		</div>
 	</div>

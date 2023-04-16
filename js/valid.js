@@ -36,24 +36,18 @@ function isValid(elem){
 				else{
 					isBinary=false
 					isDecimal=false
-					//is a non number character
 				}
 				i++
 			}
 		}
 		
-		// console.log(isBinary)
-		// console.log(isDecimal)
 		if (isBinary && !isDecimal)
 		{
-			console.log("Value "+elem.value+" is BINARY")
 			return 0;
 		} else if (!isBinary && isDecimal) {
-			console.log("Value "+elem.value+" is DECIMAL")
 			return 1;
 		}
 		else{
-			console.log("Value "+elem.value+" has NON-NUMBER CHARACTERS")
 			return -1;
 		}
 	}
@@ -63,7 +57,7 @@ function isValid(elem){
 // returns 0 if binary input
 // returns 1 if decimal input
 function validator(q,m){
-	var valid=1;
+	var valid=true;
 	var sol = document.getElementById("errormsg")
 	var cb_isInt = document.getElementById("check_int").checked
 
@@ -72,7 +66,7 @@ function validator(q,m){
 	{
 		q.style.backgroundColor = "red"
 
-		valid = -1
+		valid = false
 	}
 	else{
 		q.style.backgroundColor = "#FFFFFF"
@@ -81,29 +75,27 @@ function validator(q,m){
 	if(isValid(m)==-1)
 	{
 		m.style.backgroundColor = "red"
-		valid = -1
+		valid = false
 	}
 	else{
 		m.style.backgroundColor = "#FFFFFF"
 	}
 	
-	if (valid == -1)
+	if (valid == false)
 	{
 		sol.innerHTML = "Invalid input(s). Empty or Non-numerical input(s)."
 		return -1
 	}
-	else{	//neither inputs are blank, check for validity now
+	else{	//neither inputs are blank, therefore check for input types now
  
+		q.style.backgroundColor = "#FFFFFF"
+		m.style.backgroundColor = "#FFFFFF"
  		console.log("Operating in Base-10 DECIMAL?: "+cb_isInt)
 
-		if(isValid(q)==0 && isValid(m)==0)	//if both binary
+		if(isValid(q)==0 && isValid(m)==0)	//if both are binary
 		{
-		// if both are binary
-			// temp_q = q.value
-			// temp_m = m.value
 			if (cb_isInt) //look at the digits as if they are decimal ('10' is ten, not two)
 			{
-				// sol.innerHTML = "Invalid input. Base mismatch. Please untick the checkbox if you intended to perform BINARY division."
 				return 1
 			}
 			else{
@@ -112,20 +104,17 @@ function validator(q,m){
 		}
 		else if(isValid(q)==2||isValid(m)==2)	//else if just one is a negative, ERROR
 		{
-			sol.innerHTML = "Invalid input. Please input UNSIGNED."//negate(temp_m doesnt show leftmost digit somehow
+			sol.innerHTML = "Invalid input. Please input UNSIGNED."
 			return -1
 		}
-		else if(isValid(q)==-1 || isValid(m)==-1)	//else if just one is a nonnumber, ERROR
+		else if(isValid(q)==-1 || isValid(m)==-1)	//else if just one is a NaN, ERROR
 		{
 			sol.innerHTML = "Invalid input. Please enter NUMBERS only."
 			return -1
 		}
-		else //if(isValid(q)== 1 || isValid(m)==1) //else if just one of them is a decimal, then both are decimals
+		else 								// if just one of them is a decimal, then both are decimals
 		{
-			//then treat both as decimals na
-			// temp_q = convert(q.value)
-			// temp_m = convert(m.value)
-			if (cb_isInt) //expected to be int
+			if (cb_isInt)
 			{
 				return 1			
 			}

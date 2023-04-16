@@ -12,11 +12,12 @@ h2{
 }
 
 .ans_container{
+	margin-bottom: 5%;
 	justify-content: left;
 	height: 22px;
 	width: auto;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 }
 
 .ans_holder{
@@ -28,12 +29,16 @@ h2{
 	border: 1px solid black;
 }
 
-#A_div{
-	margin-right: 3.5%;
-	width: auto;
-}
 #Q_div{
+	gap:1.9%
+}
+
+.ans{
+	justify-content: left;
+	height: 22px;
 	width: auto;
+	display: flex;
+	flex-direction: row;
 }
 
 #ans_q{
