@@ -102,10 +102,10 @@ function validator(q,m){
 		// if both are binary
 			// temp_q = q.value
 			// temp_m = m.value
-			if (cb_isInt) //expected to be int
+			if (cb_isInt) //look at the digits as if they are decimal ('10' is ten, not two)
 			{
-				sol.innerHTML = "Invalid input. Base mismatch. Please untick the checkbox if you intended to perform BINARY division."
-				return -1
+				// sol.innerHTML = "Invalid input. Base mismatch. Please untick the checkbox if you intended to perform BINARY division."
+				return 1
 			}
 			else{
 				return 0
