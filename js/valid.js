@@ -89,7 +89,7 @@ function validator(q,m){
 	
 	if (valid == -1)
 	{
-		sol.innerHTML = "Invalid input. Empty or Non-numerical inputs."
+		sol.innerHTML = "Invalid input(s). Empty or Non-numerical input(s)."
 		return -1
 	}
 	else{	//neither inputs are blank, check for validity now
