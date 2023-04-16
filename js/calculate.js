@@ -6,7 +6,6 @@ function calculate(){
 	var show = document.querySelector('#show_sol')
 	var q = document.getElementById("dividend")
 	var m = document.getElementById("divisor")
-	var sol = document.getElementById("solution")
 	var ans_q = document.getElementById("ans_q")
 	var ans_a = document.getElementById("ans_a")
 	var valid = validator(q,m)
@@ -34,11 +33,8 @@ function calculate(){
 		}
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
-		console.log(temp_m )
-		console.log(temp_q )
 	}
-	//else if just one of them is a type 1, then both are decimals
-	else// if(isValid(q)==0||isValid(m)==0)
+	else if(valid==0)
 	{
 		//then treat both as decimals na
 		if(isValid(q)==0&&isValid(m)==0){
@@ -97,7 +93,6 @@ function calculate(){
 	}
 
 	for(i=0; i<count; i++){
-
 		step++
 		var new_a
 		
@@ -149,18 +144,5 @@ function calculate(){
 	}
 	
 	ans_a.innerHTML = AQ[0]
-	ans_q.innerHTML = AQ[1]
-	
-	//loop for q, //change temp_a and temp_q lang every step
-	//temp_a = shl(a)
-	//temp_q = shl(q)
-	//A=A-M
-	//if temp_a[temp_a.value.length-1],
-	// do stuff
-	//else
-	//step++
-	//createBox("a", temp_a, step)
-	//createBox("q", temp_q, step)
-	//createBr()
-		
+	ans_q.innerHTML = AQ[1]	
 }
