@@ -10,13 +10,18 @@
 	<h2>Restoring Division</h2>
 	<!--Div for user inputs-->
 	<div class="input_container">
+		<p>Input will be treated as base-2, unless the checkbox is ticked.</p>
 		<label>Dividend (Q)</label>
-		<input id="dividend"></input>
+		<input type="text" id="dividend"></input>
 		<br>
 		<br>
 		<label>Divisor (M)</label>
-		<input id="divisor"></input>
-		<button onclick="calculate()">Calculate</button>
+		<input type="text" id="divisor"></input>
+		<br><br>
+		<input type="checkbox" id="check_int">Input is base-10.</input>
+		<input type="checkbox" id="show_sol">Show Solution</input>
+		<br><br>
+		<button id="btn-calculate" onclick="calculate()">Calculate</button>
 	</div>
 
 	<!--Div for answer output-->
