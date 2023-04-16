@@ -1,5 +1,7 @@
 function calculate(){
 	document.getElementById("steps").innerHTML = ""
+	document.getElementById("solution").innerHTML = ""
+	document.getElementById("errormsg").innerHTML = ""
 	var decimal = document.querySelector('#check_int')
 	var show = document.querySelector('#show_sol')
 	var q = document.getElementById("dividend")
@@ -7,14 +9,14 @@ function calculate(){
 	var sol = document.getElementById("solution")
 	var ans_q = document.getElementById("ans_q")
 	var ans_a = document.getElementById("ans_a")
-	
 	var valid = validator(q,m)
 	var temp_q=-1
 	var temp_m=0
 
 
-	if (valid == -1){
-		console.log("Error: No inputs!")
+	if (!valid){
+		document.getElementById("errormsg").innerHTML = "Please add inputs!"
+		console.log("Here")
 		return
 	}
 
@@ -40,7 +42,7 @@ function calculate(){
 			temp_m = temp_m.padStart(temp_q.length, "0")
 			temp_q = temp_q.padStart(temp_m.length, "0")
 		}else{
-			console.log("Inputs are not binary!")
+			document.getElementById("errormsg").innerHTML = "Inputs are not binary! Make sure that the proper checkbox is ticked."
 			return
 		}
 	}
@@ -69,8 +71,10 @@ function calculate(){
 		
 		//INITIALIZE STEP
 		if (show.checked){
-			createBox("a", AQ[0], step)
-			createBox("q", AQ[1], step)
+			createLabel(step)
+			createBr()
+			createBox("a", AQ[0])
+			createBox("q", AQ[1])
 			createBr()
 			createBr()
 		}
@@ -80,14 +84,18 @@ function calculate(){
 		}
 
 		for(i=0; i<count; i++){
+
+			step++
 			var new_a
 			
 			AQ = shift_left(AQ)
 
 			//Print after shift
 			if (show.checked){
-				createBox("a", AQ[0], step)
-				createBox("q", AQ[1], step)
+				createLabel(step)
+				createBr()
+				createBox("a", AQ[0])
+				createBox("q", AQ[1])
 				createBr()
 			}
 			
