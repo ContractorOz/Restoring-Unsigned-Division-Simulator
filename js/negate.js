@@ -27,5 +27,11 @@ function negate(num){
 			}
 		}
 	}
+	
+	if (negative.charAt(0) == '1'){
+		negative = '1' + negative
+	} else {
+		negative = '0' + negative
+	}
 	return negative
 }

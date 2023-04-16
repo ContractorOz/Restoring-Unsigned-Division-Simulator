@@ -10,7 +10,6 @@ function calculate(){
 	var temp_q=-1
 	var temp_m=0
 
-	console.log(binary.checked)
 
 	if (!valid){
 		console.log("Error: No inputs!")
@@ -35,7 +34,9 @@ function calculate(){
 		//then treat both as decimals na
 		temp_q = convert(q.value)
 		temp_m = convert(m.value)
-	}	
+	}
+
+	console.log("Q = " + temp_q + " M = " + temp_m + " negate M = " + negate(temp_m))
 	
 	if(valid){
 		q.style.backgroundColor = "#FFFFFF"
@@ -75,7 +76,7 @@ function calculate(){
 			createBr()
 			
 			//A = A-M
-			new_a = parseInt(AQ[0], 2) + parseInt(temp_m, 2)
+			new_a = parseInt(AQ[0], 2) + parseInt(negate(temp_m), 2)
 			new_a = new_a.toString(2)
 			
 			if (new_a.length > count+1){
@@ -108,8 +109,8 @@ function calculate(){
 			createBr()
 		}
 		
-
-		
+		ans_a.innerHTML = AQ[0]
+		ans_q.innerHTML = AQ[1]
 		
 		//loop for q, //change temp_a and temp_q lang every step
 		//temp_a = shl(a)
