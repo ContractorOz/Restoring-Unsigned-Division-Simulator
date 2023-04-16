@@ -11,7 +11,6 @@ function negate(num){
 		}
 		//copy first 1 to negative and flag found
 		else if (num[i] == 1 && found_one == false){
-			//negative += 'B'//num[i]
 			negative= '1' + negative
 			found_one = true
 		}
@@ -19,11 +18,9 @@ function negate(num){
 		else if(found_one == true){
 			if(num[i] == '0'){
 				negative= '1' + negative
-				//negative += '1';
 			}
 			else if (num[i] == '1'){
 				negative= '0' + negative
-				//negative += '0';
 			}
 		}
 	}
