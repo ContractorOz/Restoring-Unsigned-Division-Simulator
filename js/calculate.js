@@ -37,14 +37,14 @@ function calculate(){
 	var temp_q=-1
 	var temp_m=0
 
-	if (valid==0) //check if inputs are decimal, invalid, or binary
+	if (valid==1) //check if inputs are decimal, invalid, or binary
 	{
 		var temp_q = convert(q.value)
 		var temp_m = convert(m.value)
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
 	}
-	else if(valid==1)
+	else if(valid==0)
 	{
 		var temp_q = q.value
 		var temp_m = m.value
