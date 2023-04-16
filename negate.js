@@ -4,7 +4,7 @@ function negate(num){
 	var i=0
 	var found_one=false
 	//increment from left to right
-	for (i=num.length - 1; i>0; i--){
+	for (i=num.length - 1; i>=0; i--){
 		//copy all 0's to negative (return value)
 		if(num[i] == '0' && found_one == false){
 			negative= '0' + negative //num[i]
