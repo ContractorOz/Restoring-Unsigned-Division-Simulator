@@ -7,6 +7,7 @@ function calculate(){
 	
 	var valid = validator(q,m)
 	var temp_q=-1
+	var temp_m=0
 	//check if 10, 100, 1 -> should be checked first if decimal din kabila
 	if(isValid(q)==0&&isValid(m)==0)
 	{
@@ -18,6 +19,7 @@ function calculate(){
 	{
 		//then treat both as decimals na
 		temp_q = convert(q.value)
+		temp_m = convert(m.value)
 	}
 	
 	
@@ -57,7 +59,7 @@ function calculate(){
 			AQ = shift_left(AQ)
 
 			//A = A-M
-			new_a = parseInt(AQ[0], 2) + parseInt(m.value, 2)
+			new_a = parseInt(AQ[0], 2) + parseInt(temp_m, 2)
 			new_a = new_a.toString(2)
 			
 			if (new_a.length > count+1){
