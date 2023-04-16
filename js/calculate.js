@@ -26,6 +26,9 @@ function calculate(){
 	// if both are binary
 		temp_q = convert(q.value)
 		temp_m = convert(m.value)
+		if (temp_q.charAt(0) == "1"){
+			temp_q = "0" + temp_q
+		}
 		temp_m = temp_m.padStart(temp_q.length, "0")
 		temp_q = temp_q.padStart(temp_m.length, "0")
 		console.log(temp_m )
@@ -39,8 +42,13 @@ function calculate(){
 		if(isValid(q)==0&&isValid(m)==0){
 			temp_q = q.value
 			temp_m = m.value
+			if (temp_q.charAt(0) == "1"){
+				temp_q = "0" + temp_q
+			}
 			temp_m = temp_m.padStart(temp_q.length, "0")
 			temp_q = temp_q.padStart(temp_m.length, "0")
+			console.log(temp_m )
+			console.log(temp_q )
 		}else{
 			document.getElementById("errormsg").innerHTML = "Inputs are not binary! Make sure that the proper checkbox is ticked."
 			return
