@@ -1,6 +1,7 @@
 function calculate(){
 	document.getElementById("steps").innerHTML = ""
 	var decimal = document.querySelector('#check_int')
+	var show = document.querySelector('#show_sol')
 	var q = document.getElementById("dividend")
 	var m = document.getElementById("divisor")
 	var sol = document.getElementById("solution")
@@ -67,21 +68,28 @@ function calculate(){
 		AQ.push(temp_q)
 		
 		//INITIALIZE STEP
-		createBox("a", AQ[0], step)
-		createBox("q", AQ[1], step)
-		createBr()
-		createBr()
+		if (show.checked){
+			createBox("a", AQ[0], step)
+			createBox("q", AQ[1], step)
+			createBr()
+			createBr()
+		}
 		
-		sol.innerHTML = "-M: "+negate(temp_m)
+		if (show.checked){
+			sol.innerHTML = "-M: "+negate(temp_m)
+		}
+
 		for(i=0; i<count; i++){
 			var new_a
 			
 			AQ = shift_left(AQ)
 
 			//Print after shift
-			createBox("a", AQ[0], step)
-			createBox("q", AQ[1], step)
-			createBr()
+			if (show.checked){
+				createBox("a", AQ[0], step)
+				createBox("q", AQ[1], step)
+				createBr()
+			}
 			
 			//A = A-M
 			new_a = parseInt(AQ[0], 2) + parseInt(negate(temp_m), 2)
@@ -111,10 +119,12 @@ function calculate(){
 			}
 			
 			//Show Solution
-			createBox("a", AQ[0], step)
-			createBox("q", AQ[1], step)
-			createBr()
-			createBr()
+			if (show.checked){
+				createBox("a", AQ[0], step)
+				createBox("q", AQ[1], step)
+				createBr()
+				createBr()
+			}
 		}
 		
 		ans_a.innerHTML = AQ[0]
